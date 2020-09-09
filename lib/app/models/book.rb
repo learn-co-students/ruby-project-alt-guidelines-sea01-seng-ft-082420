@@ -1,4 +1,4 @@
 class Book < ActiveRecord::Base
-    has_many :ratings
-    has_many :bookshelves, :foreign_key => :ratings
+   belongs_to :bookshelf
+   belongs_to :category
 end
