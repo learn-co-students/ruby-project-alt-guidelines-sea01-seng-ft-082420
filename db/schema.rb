@@ -10,25 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_08_203516) do
+ActiveRecord::Schema.define(version: 2020_09_09_023009) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "genre"
-    t.boolean "best_seller"
-    t.boolean "read"
-    t.integer "rating"
+    t.string "category"
   end
 
   create_table "bookshelves", force: :cascade do |t|
     t.integer "book_id"
-    t.integer "rating_id"
+    t.integer "category_id"
   end
 
-  create_table "ratings", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
     t.integer "book_id"
-    t.integer "rating"
   end
 
 end
