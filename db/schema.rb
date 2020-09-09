@@ -15,17 +15,15 @@ ActiveRecord::Schema.define(version: 2020_09_09_061739) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "genre"
+    t.integer "genre_id"
   end
 
   create_table "bookshelves", force: :cascade do |t|
     t.integer "book_id"
-    t.integer "genre_id"
   end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.integer "book_id"
   end
 
 end

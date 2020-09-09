@@ -1,18 +1,19 @@
 class Bookshelf < ActiveRecord::Base
-    has_many :genres
     has_many :books
+    has_many :genres, through: :books 
+    
+
+  
+    # def drake_made_this
+    #   if Artist.all.find{|a| a.name == "Drake"}== nil
+    #     drake = Artist.create(name: "Drake")
+    #   end
+    #   self.artist = Artist.all.find{|a| a.name == "Drake"}
 
 
-    @@bookshelf =[]
 
-    def self.add_book(title, author, genre)
-      @@bookshelf << Book.create(:title=>title, :author=>author, :genre=>genre)
-    end 
 
-    def self.my_books
-      @@bookshelf
-    end
-
+   
     # def self.update_book(book,newtitle)
     #   cbook = Book.find{|key| key.title == book}
     #   cbook.update(title: newtitle)
