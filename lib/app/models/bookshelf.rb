@@ -3,8 +3,8 @@ class Bookshelf < ActiveRecord::Base
     has_many :books
     @@bookshelf =[]
 
-    def self.add_book(btitle, bauthor, bgenre = nil, best_seller = false, read= false, rating)
-      @@bookshelf << Book.create(:title => btitle, :author => bauthor, :genre => bgenre, :best_seller => best_seller, :read => read, :rating => rating)
+    def self.add_book(btitle)
+      @@bookshelf << Book.create(:title => btitle)
     end 
 
     def self.my_books
@@ -25,3 +25,5 @@ class Bookshelf < ActiveRecord::Base
   end
 
   #:first_name => "Emilia" author
+  #def self.add_book(btitle, bauthor, bgenre = nil, best_seller = false, read= false, rating
+  # :author => bauthor, :genre => bgenre, :best_seller => best_seller, :read => read, :rating => rating
