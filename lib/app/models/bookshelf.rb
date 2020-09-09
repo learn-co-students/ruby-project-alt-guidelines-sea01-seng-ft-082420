@@ -1,26 +1,29 @@
 class Bookshelf < ActiveRecord::Base
-    has_many :ratings
+    has_many :categories, through: :books 
     has_many :books
-    @@bookshelf =[]
 
-    def self.add_book(btitle)
-      @@bookshelf << Book.create(:title => btitle)
-    end 
 
-    def self.my_books
-      @@bookshelf
-    end
 
-    def self.change_rating(book,newtitle)
-      cbook = Book.find{|key| key.title == book}
-      cbook.update(title: newtitle)
-      cbook
-    end
+    # @@bookshelf =[]
 
-    def self.sell_books
-      Book.destroy_all
-      puts "Made some cash!"
-    end
+    # def self.add_book(btitle)
+    #   @@bookshelf << Book.create(:title => btitle)
+    # end 
+
+    # def self.my_books
+    #   @@bookshelf
+    # end
+
+    # def self.change_rating(book,newtitle)
+    #   cbook = Book.find{|key| key.title == book}
+    #   cbook.update(title: newtitle)
+    #   cbook
+    # end
+
+    # def self.sell_books
+    #   Book.destroy_all
+    #   puts "Made some cash!"
+    # end
 
   end
 
