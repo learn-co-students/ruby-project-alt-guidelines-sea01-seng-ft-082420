@@ -4,6 +4,7 @@ require_relative '../lib/cli.rb'
 
 cli = CommandLineInterface.new
 cli.greet
+cli.wine_seeking
 
 
 
