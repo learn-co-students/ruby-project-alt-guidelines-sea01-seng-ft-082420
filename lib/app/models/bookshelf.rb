@@ -1,12 +1,12 @@
 class Bookshelf < ActiveRecord::Base
-    has_many :categories, through: :books
+    has_many :genres
     has_many :books
 
 
     @@bookshelf =[]
 
-    def self.add_book(title, author)
-      @@bookshelf << Book.create(:title=>title, :author=>author)
+    def self.add_book(title, author, genre)
+      @@bookshelf << Book.create(:title=>title, :author=>author, :genre=>genre)
     end 
 
     def self.my_books

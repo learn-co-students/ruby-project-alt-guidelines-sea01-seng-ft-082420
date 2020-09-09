@@ -10,20 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_023009) do
+ActiveRecord::Schema.define(version: 2020_09_09_061739) do
 
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "author"
-    t.string "category"
+    t.string "genre"
   end
 
   create_table "bookshelves", force: :cascade do |t|
     t.integer "book_id"
-    t.integer "category_id"
+    t.integer "genre_id"
   end
 
-  create_table "categories", force: :cascade do |t|
+  create_table "genres", force: :cascade do |t|
     t.string "name"
     t.integer "book_id"
   end
