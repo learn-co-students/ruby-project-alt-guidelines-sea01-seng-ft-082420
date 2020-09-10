@@ -5,8 +5,8 @@ require 'optparse'
 
 cli = CommandLineInterface.new
 cli.greet
-cli.menu
-cli.wine_seeking
+# cli.menu
+# cli.wine_seeking
 
 
 
