@@ -5,7 +5,7 @@ def greet
     puts "I'm CLI, may I have your name please to see if you're in our wine club?"
     @@name = gets.chomp
     if Customer.all.find_by_name(@@name)
-        puts "Welcome Back #{name}"
+        puts "Welcome Back #{@@name}"
     else 
         puts "You don't seem to be in the club #{@@name}."
         add_to_club
@@ -19,9 +19,13 @@ def add_to_club
         menu.choice 'NO'
     end
     if ask == 'YES'
-        puts "What's your favorite type of wine?"
-        wine = gets.chomp
-        # Customer.new(name: #{name}, wine_preference: #{wine})
+        type = prompt.select("What's your favorite type of wine?") do |type|
+            type.choice 'bubbly'
+            type.choice 'rose'
+            type.choice 'white'
+            type.choice 'red'
+        end
+        Customer.create(name: "#{@@name}", wine_preference: "#{type}")
     end
 end
 
