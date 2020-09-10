@@ -12,9 +12,11 @@ Functionality of The Bookshelf includes:
 4. Viewing bookshelf collection
 5. Removing a book or entire bookshelf
 
+[Menu of the project](img/menu.png)
+
 ## Setup
 1. Clone the bookshelf repository into your computer
-2. Within your terminal, navigate to the application folder
+2. Within your terminal, navigate to the application folder (make sure to maximize your terminal window to allow the text to be correctly dispayed)
 3. Enter 'bundle install' to make sure that your computer has the required gems
 4. Enter 'rake db:migrate' to create necessary database tables
 5. Enter 'rake db:seed' if you want to load dummy data. It will create two bookshelves under the names 'Rita' and 'Jackson'

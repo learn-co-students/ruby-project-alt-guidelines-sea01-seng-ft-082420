@@ -8,6 +8,22 @@ class Interface
     @prompt = TTY::Prompt.new(active_color: :on_blue) 
   end
 
+  def welcoming_message
+    puts "
+      
+  ██     ██ ███████ ██       ██████  ██████  ███    ███ ███████     ████████  ██████      ██████   ██████   ██████  ██   ██ ███████ ██   ██ ███████ ██      ███████ 
+  ██     ██ ██      ██      ██      ██    ██ ████  ████ ██             ██    ██    ██     ██   ██ ██    ██ ██    ██ ██  ██  ██      ██   ██ ██      ██      ██      
+  ██  █  ██ █████   ██      ██      ██    ██ ██ ████ ██ █████          ██    ██    ██     ██████  ██    ██ ██    ██ █████   ███████ ███████ █████   ██      █████   
+  ██ ███ ██ ██      ██      ██      ██    ██ ██  ██  ██ ██             ██    ██    ██     ██   ██ ██    ██ ██    ██ ██  ██       ██ ██   ██ ██      ██      ██      
+   ███ ███  ███████ ███████  ██████  ██████  ██      ██ ███████        ██     ██████      ██████   ██████   ██████  ██   ██ ███████ ██   ██ ███████ ███████ ██      
+                                                                                                                                                                    
+                                                                                                                                                                 
+                                                                                                                                                                                                                                                
+    ".cyan
+                                                                                                                                               
+
+  end 
+
   def welcome 
     puts "Hi there, welcome to the BOOKSHELF!".cyan
     sleep 2
@@ -17,7 +33,7 @@ class Interface
   end 
 
   def user_options
-    self.prompt.select("Please select from the following options what you would like to do: (Use ↑/↓ arrow keys, press Enter to select)".cyan) do |option|
+    self.prompt.select("Please select from the following options what you would like to do: (Use ↑/↓ arrow keys, press Enter to select)".cyan, per_page: 9) do |option|
       option.choice "Add a book to my bookshelf", -> {self.add_book}
       option.choice "See all books on my bookshelf", -> {self.see_my_books}
       option.choice "Update a book title", -> {self.update_title}
