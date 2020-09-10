@@ -28,4 +28,4 @@ end
 
 
 
-# run rake db:seed once fix genre thing
+# run rake db:seed to seed with dummy data
