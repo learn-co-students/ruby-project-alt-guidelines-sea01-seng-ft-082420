@@ -12,7 +12,7 @@ Functionality of The Bookshelf includes:
 4. Viewing bookshelf collection
 5. Removing a book or entire bookshelf
 
-[Menu of the project](img/menu.png)
+![Menu of the project](img/menu.png)
 
 ## Setup
 1. Clone the bookshelf repository into your computer
