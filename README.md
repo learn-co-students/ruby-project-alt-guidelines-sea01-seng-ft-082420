@@ -3,7 +3,7 @@
 #### By _**Margarita Morozova & Jackson Beytebiere** _
 
 ## Description
-This application is a virtual bookshelf that allows users to organize their book collection and keep track of books they would like to read in the future. The Bookshelf was created to for Flatiron's Module 1 project to demonstrate working knowledge of Ruby, Active Record, CRUD methods and working with a database.
+This application is a virtual bookshelf that allows users to organize their book collection and keep track of books they would like to read in the future. The Bookshelf was created for Flatiron's Module 1 project to demonstrate working knowledge of Ruby, Active Record, CRUD methods and working with a database.
 
 Functionality of The Bookshelf includes:
 1. Creating a bookshelf associated with a username
@@ -21,7 +21,6 @@ Functionality of The Bookshelf includes:
 6. Enter 'ruby bin/run.rb'
 7. Enjoy!
 
-
 ## Known Bugs
 
 * None. Our program is perfection.
@@ -30,6 +29,9 @@ Functionality of The Bookshelf includes:
 
 * Ruby
 * ActiveRecord 5.2
+* TTY::Prompt Gem
+* Colorize Gem
+* Faker Gem
 
 
 ### Legal
