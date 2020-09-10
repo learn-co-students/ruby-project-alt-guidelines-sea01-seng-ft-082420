@@ -13,27 +13,28 @@ Functionality of The Bookshelf includes:
 5. Removing a book or entire bookshelf
 
 ## Setup
-1. clone the bookshelf repository into your computer
-2. within your terminal, navigate to the application folder
-3. enter 'bundle install' to make sure that your computer has the required gems.
-4. enter 'ruby bin/run.rb'
-5. enjoy!
+1. Clone the bookshelf repository into your computer
+2. Within your terminal, navigate to the application folder
+3. Enter 'bundle install' to make sure that your computer has the required gems.
+4. Enter 'rake db:migrate' to create necessary database tables
+5. Enter 'rake db:seed' if you want to load dummy data. It will create two bookshelves under the names 'Rita' and 'Jackson'
+6. Enter 'ruby bin/run.rb'
+7. Enjoy!
+
 
 ## Known Bugs
 
 * None. Our program is perfection.
 
-## Support and Contact Details
-
-
 ## Technologies used:
 
-* HTML
-* CSS
-* Bootstrap
+* Ruby
+* ActiveRecord 5.2
 
 
 ### Legal
-Copyright (c) 2020 Margarita Morozova.
+Copyright (c) 2020 Margarita Morozova & Jackson Beytebiere
 
-Licensed under the MIT license.
+
+Margarita Morozova https://github.com/rita-morozova
+Jackson Beytebiere https://github.com/JacksonBey
