@@ -185,8 +185,14 @@ class Interface
   end
 
   def back_to_user_options
-    user_options
-    user_choice
+    puts "Would you like to go back to the main menu? (Y/N)"
+    input = gets.strip.to_s 
+      if input == "Y" || input == "y"
+        user_options
+        user_choice
+      else
+        exit 
+      end 
   end 
    
 
