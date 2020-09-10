@@ -4,7 +4,16 @@ class Interface
 
   def welcome 
      puts "Hi there, welcome to the BOOKSHELF!"
-     puts "What is your name?"
+     sleep 1
+     puts "              / \\   "
+     puts "            /     \\  "
+     puts "          /         \\    "
+     puts "        /             \\    "
+     puts "       /                \\    "
+     puts "　　　／／　　            ＼＼   "
+     puts "　　 ／    （●） 　 （●）    ＼    "
+     puts"　  ／::::::⌒（__人__）⌒::::: ＼     "
+    puts "What is your name?"
      name = gets.chomp.to_s.capitalize
      @shelf = Bookshelf.all.find{|shelf| shelf.name == name}
         if @shelf == nil
@@ -22,8 +31,7 @@ class Interface
       - 6 - See what genres I have on my bookshelf\n
       - 7 - Check a book's author\n
       - 8 - Search books by genre\n
-      - 9 - Exit
-      "
+      - 9 - Exit"
   end 
 
   def user_choice
@@ -165,8 +173,10 @@ class Interface
 
     when "9"
       exit 
-    end 
-  end 
+  # when "10"
+  #   cats
+end 
+end 
 
   def exit 
     puts "Goodbye! Hope to see you again!"
@@ -176,6 +186,20 @@ class Interface
     user_options
     user_choice
   end 
+  
+  # def cats
+  #   puts "                      /^--^\      /^--^\     /^--^\"
+  #   puts "                      |・ω・|     | ・ω・|    | ・ω・|"
+  #   puts "                      \____/      \____/     \____/"
+  #   puts "                    /      \    /      \   /      \"
+  #   puts"                     |      |    |        | |        |"
+  #   puts" _ _ _ _ _ _ _ _ _ _ \__  __/_ _ _\__  __/ _ \__  __/_ _ _ _ _ _ _ _ _ _ "
+  #   puts"| | | | | | | | | | | | \ \ | | | / / | | | | \ \ | | | | | | | | | | | |"
+  #   puts"| | | | | | | | | | | | |\ \| | |/ /| | | | | | \ \ | | | | | | | | | | |"
+  #   puts"########################/ /######\ \###########/ /#######################"
+  #   puts"| | | | | | | | | | | | \/| | | | \/| | | | | |\/ | | | | | | | | | | | |"
+  #   puts"|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|"
+  # end
  
 
 end 
