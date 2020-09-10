@@ -5,13 +5,13 @@ class Interface
   
 
   def initialize
-    @prompt = TTY::Prompt.new 
+    @prompt = TTY::Prompt.new(active_color: :on_blue) 
   end
 
   def welcome 
-    puts "Hi there, welcome to the BOOKSHELF!".green
+    puts "Hi there, welcome to the BOOKSHELF!".cyan
     sleep 2
-    puts "What is your name?".green
+    puts "What is your name?".cyan
     name = gets.chomp.to_s.capitalize
     @shelf = Bookshelf.all.find{|shelf| shelf.name == name}
       if @shelf == nil
@@ -20,7 +20,7 @@ class Interface
   end 
 
   def user_options
-    self.prompt.select("Please select from the following options what you would like to do: (Use ↑/↓ arrow keys, press Enter to select)".green) do |option|
+    self.prompt.select("Please select from the following options what you would like to do: (Use ↑/↓ arrow keys, press Enter to select)".cyan) do |option|
       option.choice "Add a book to my bookshelf", -> {self.add_book}
       option.choice "See all books on my bookshelf", -> {self.see_my_books}
       option.choice "Update a book title", -> {self.update_title}
@@ -34,11 +34,11 @@ class Interface
   end 
 
   def add_book
-    puts "Enter the book's title: ".green
+    puts "Enter the book's title: ".cyan
      entered_title = gets.strip.to_s.capitalize
-    puts "Enter the book's author: ".green
+    puts "Enter the book's author: ".cyan
      entered_author = gets.strip.to_s.capitalize
-    puts "Enter a book's genre: ".green
+    puts "Enter a book's genre: ".cyan
      entered_genre = gets.strip.to_s.capitalize
     new_book = Book.create(:title => entered_title, :author => entered_author)
     igen = Genre.all.find{|genre| genre.name == entered_genre}
@@ -50,7 +50,7 @@ class Interface
     new_book.genre_id = ngen.id
     new_book.bookshelf_id = @shelf.id
     new_book.save
-    puts "You successfully added a book!".green
+    puts "You successfully added a book!".cyan
     sleep 2
     back_to_user_options
   end 
@@ -67,9 +67,9 @@ class Interface
   end 
 
   def update_title
-    puts "Enter the title of the book you want to change:".green
+    puts "Enter the title of the book you want to change:".cyan
      old_title = gets.strip.to_s.capitalize
-    puts "Enter the new title: ".green
+    puts "Enter the new title: ".cyan
      new_title = gets.strip.to_s.capitalize
     ubook = Book.all.find{|book| book.title == old_title}
       if ubook == nil
@@ -78,13 +78,13 @@ class Interface
         back_to_user_options
       end
     ubook.update(:title => new_title)
-    puts "Book updated.".green
+    puts "Book updated.".cyan
     sleep 3
     back_to_user_options
   end 
 
   def remove_book
-    puts "Enter the title of the book you want to delete: ".green
+    puts "Enter the title of the book you want to delete: ".cyan
      book_title = gets.strip.to_s.capitalize
     destroy_book = Book.all.find{|book| book.title == book_title}
       if destroy_book == nil
@@ -107,7 +107,7 @@ class Interface
              shelf.destroy
             end
           end
-          puts "Bookshelf emptied.".green
+          puts "Bookshelf emptied.".cyan
           sleep 3
           back_to_user_options
         else 
@@ -137,7 +137,7 @@ class Interface
   end 
 
   def find_author
-    puts "Enter the title of the book you want to see the author of: ".green
+    puts "Enter the title of the book you want to see the author of: ".cyan
     abook = gets.strip.to_s.capitalize
     tbook = Book.all.find{|book| book.title== abook}
       if tbook == nil
@@ -145,14 +145,14 @@ class Interface
         sleep 3
         back_to_user_options
       else
-        puts "#{abook}'s author: #{tbook.author}".green
+        puts "#{abook}'s author: #{tbook.author}".cyan
         sleep 3
         back_to_user_options
       end
   end
 
   def find_by_genre
-    puts "Enter the genre that you would like to see the books of: ".green
+    puts "Enter the genre that you would like to see the books of: ".cyan
      user_genre = gets.strip.to_s.capitalize
     u_genre = Genre.all.find{|genre| genre.name == user_genre}
       if u_genre ==nil 
@@ -171,11 +171,24 @@ class Interface
   end 
 
   def exit 
-    puts "******GOODBYE! HOPE TO SEE YOU AGAIN!******".green
+    #keep cats a bit crooked, they will be displayed nicely
+    puts "                      /^--^\\      /^--^\\     /^--^\\"
+    puts "                      |・ω・|    | ・ω・|   | ・ω・|"
+    puts "                      \\____/      \\____/     \\____/"
+    puts "                     /     \\     /      \\   /      \\"
+    puts"                     |      |    |        | |       |"
+    puts" _ _ _ _ _ _ _ _ _ _ \\__  __/_ _ _\\__  __/ _ \\__  __/_ _ _ _ _ _ _ _ _ _ "
+    puts"| | | | | | | | | | | | \\ \\ | | | / / | | | | \\ \\ | | | | | | | | | | | |"
+    puts"| | | | | | | | | | | | |\\ \\| | |/ /| | | | | | \\ \\ | | | | | | | | | | |"
+    puts"########################/ /######\\ \\###########/ /#######################"
+    puts"| | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |"
+    puts"|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|"
+
+    puts "******GOODBYE! HOPE TO SEE YOU AGAIN!******".cyan
   end
 
   def back_to_user_options
-    puts "Would you like to go back to the main menu? (Y/N)".green
+    puts "Would you like to go back to the main menu? (Y/N)".cyan
     input = gets.strip.to_s 
       if input == "Y" || input == "y"
         user_options
