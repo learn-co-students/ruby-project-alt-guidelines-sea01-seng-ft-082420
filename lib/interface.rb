@@ -173,7 +173,7 @@ class Interface
   def exit 
     #keep cats a bit crooked, they will be displayed nicely
     puts "                      /^--^\\      /^--^\\     /^--^\\"
-    puts "                      |・ω・|    | ・ω・|   | ・ω・|"
+    puts "                     |・ω・|     | ・ω・|   | ・ω・|"
     puts "                      \\____/      \\____/     \\____/"
     puts "                     /     \\     /      \\   /      \\"
     puts"                     |      |    |        | |       |"
