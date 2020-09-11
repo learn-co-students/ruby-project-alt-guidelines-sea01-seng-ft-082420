@@ -24,7 +24,7 @@ Functionality of The Bookshelf includes:
 7. Enjoy!
 
 ## Known Bugs
-* None. Our program is perfection.
+* None. 
 
 ## Technologies used:
 * Ruby
@@ -32,6 +32,9 @@ Functionality of The Bookshelf includes:
 * TTY::Prompt Gem
 * Colorize Gem
 * Faker Gem
+
+
+[Video demo](https://www.youtube.com/watch?v=eYNUSFGpr2o&t=72s)
 
 ### Legal
 Copyright (c) 2020 Margarita Morozova & Jackson Beytebiere
