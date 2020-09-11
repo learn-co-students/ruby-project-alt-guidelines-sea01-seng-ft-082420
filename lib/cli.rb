@@ -27,6 +27,7 @@ def add_to_club
             type.choice 'red'
         end
         Customer.create(name: "#{@@name}", wine_preference: "#{fave}")
+    ### if NO is selected do I return to menu?
     end
 end
 
@@ -41,10 +42,10 @@ def menu
     if help == 'What was my last purchase?'
         puts "Let me check."  # make a better sentence with interpolation
         wine = Customer.find_by(name: @@name).wine_deals.last.winery.wine_type #maybe change to name
-        purchase(wine)
-    elsif help = 'What have all my wine purchases been?'
+        purchase(wine)  #if nil puts message "Sorry, there's no record" move to wine_seeking
+    elsif help == 'What have all my wine purchases been?'
         show_all_wine
-    elsif help = 'I\'d like to return a bottle, please'
+    elsif help == 'I\'d like to exchange a bottle, please'
         exchange
     elsif help == 'What do you have today?'
         wine_seeking
@@ -93,8 +94,10 @@ def drink
     if friday == 'Have a nice dinner!'
         # destroy last row entered
         Customer.find_by(name: @@name).wine_deals.last.destroy
+        ### puts message "You drank a couple glasses of wine with an amazing dinner... blah blah blah"
     elsif friday == 'Throw a party!'
-        Customer.find_by(name: @@name).wine_deals.last.destroy_all
+        Customer.find_by(name: @@name).wine_deals.destroy_all
+        ### put message with count like "wow, you guys drank #{this_many} bottles"
     end
 end
 
@@ -102,6 +105,34 @@ def show_all_wine
     w = Customer.find_by(name: @@name)
    puts w.wineries.map { |winery| "name: #{winery.name} wine type: #{winery.wine_type}"}
 end
+
+def exchange
+    puts "Absolutly, here are all of your past purchases."
+    show_all_wine
+    prompt = TTY::Prompt.new
+    this = prompt.select("What wine do you want to change?") do |that|
+        that.choice 'Bubbly Wubbly'
+        that.choice 'Rose All Day'
+        that.choice 'Bright White'
+        that.choice 'Red Meat Red'
+    end
+    w = Winery.find_by(name: this)
+    prompt = TTY::Prompt.new
+    new_wine = prompt.select("What would you like instead?") do |that|
+        that.choice 'bubbly'
+        that.choice 'rose'
+        that.choice 'white'
+        that.choice 'red'
+    end
+    w.update(wine_type: new_wine)
+    
+    #show_all_wine.update_all wine_type: this
+    ## maybe change so it's not changing the Wineries actual wine type and just change wine id in Wine Deal to equal Wine id of new_wine
+    # return to menu???
+
+    
+end
+    
 
 
 
