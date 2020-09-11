@@ -4,7 +4,7 @@ def greet
     puts "Welcome to the World of Wine!"
     puts "I'm CLI, may I have your name please to see if you're in our wine club?"
     @@name = gets.chomp
-    if Customer.all.find_by_name(@@name)
+    if Customer.find_by_name(@@name)
         puts "Welcome Back #{@@name}"
         menu
     else 
@@ -107,7 +107,17 @@ end
 
 def show_all_wine
     w = Customer.find_by(name: @@name)
-   puts w.wineries.map { |winery| "name: #{winery.name} wine type: #{winery.wine_type}"}
+    count = w.wine_deals.count 
+    if count == 0
+        puts "Uh-oh, looks like the the cellar is empty."
+    elsif count == 1
+        puts " You have 1 bottle of wine."
+        puts w.wineries.map { |winery| "A #{winery.wine_type} from #{winery.name}"}
+    else
+        puts "You have #{count} bottles of wine."
+        puts w.wineries.map { |winery| "A #{winery.wine_type} from #{winery.name}"}.uniq
+    end
+    menu
 end
 
 def exchange
