@@ -5,5 +5,5 @@ ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/develo
 require_all 'app'
 
 ####### Turn off SQL logger when ready to format layout #######
-# ActiveRecord::Base.logger = nil
+ActiveRecord::Base.logger = nil
 
