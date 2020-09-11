@@ -76,7 +76,7 @@ class Interface
 
   def update_title
     puts "Enter the title of the book you want to change:".cyan
-     old_title = gets.strip.to_s.capitalize
+     old_title = gets.strip.to_s
     puts "Enter the new title: ".cyan
      new_title = gets.strip.to_s.capitalize
      ubook = Book.all.find_by(title: old_title)
@@ -93,7 +93,7 @@ class Interface
 
   def remove_book
     puts "Enter the title of the book you want to delete: ".cyan
-     book_title = gets.strip.to_s.capitalize
+     book_title = gets.strip.to_s
      destroy_book = Book.all.find_by(title: book_title)
       if destroy_book == nil
         puts "You do not have that book on your bookshelf!".red
@@ -159,7 +159,7 @@ class Interface
 
   def find_by_genre
     puts "Enter the genre that you would like to see the books of: ".cyan
-     user_genre = gets.strip.to_s.capitalize
+     user_genre = gets.strip.to_s
      u_genre = Genre.all.find_by(name:user_genre)
       if u_genre ==nil 
         puts "Sorry, there is no such genre in your collection".red
@@ -177,7 +177,7 @@ class Interface
   end 
 
   def exit 
-    #keep cats a bit crooked, they will be displayed nicely
+    # keep cats a bit crooked, they will be displayed nicely
     puts "                      /^--^\\      /^--^\\     /^--^\\"
     puts "                     |・ω・|     | ・ω・|   | ・ω・|"
     puts "                      \\____/      \\____/     \\____/"
@@ -189,7 +189,7 @@ class Interface
     puts"########################/ /######\\ \\###########/ /#######################"
     puts"| | | | | | | | | | | | \\/| | | | \\/| | | | | |\\/ | | | | | | | | | | | |"
     puts"|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|_|"
-
+    puts"                                          "
     puts "******GOODBYE! HOPE TO SEE YOU AGAIN!******".cyan
   end
 
