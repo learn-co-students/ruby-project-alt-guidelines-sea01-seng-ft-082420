@@ -28,7 +28,7 @@ class Interface
     puts "Hi there, welcome to the BOOKSHELF!".cyan
     sleep 2
     puts "What is your name?".cyan
-    name = gets.chomp.to_s.capitalize
+    name = gets.chomp.to_s.titleize
     @shelf = Bookshelf.all.find_or_create_by(name:name)
   end 
 
@@ -48,11 +48,11 @@ class Interface
 
   def add_book
     puts "Enter the book's title: ".cyan
-     entered_title = gets.strip.to_s.capitalize
+     entered_title = gets.strip.to_s.titleize
     puts "Enter the book's author: ".cyan
-     entered_author = gets.strip.to_s.capitalize
+     entered_author = gets.strip.to_s.titleize
     puts "Enter a book's genre: ".cyan
-     entered_genre = gets.strip.to_s.capitalize
+     entered_genre = gets.strip.to_s.titleize
     new_book = Book.create(:title => entered_title, :author => entered_author)
     igen = Genre.all.find_or_create_by(name: entered_genre)
     new_book.genre_id = igen.id
@@ -76,9 +76,9 @@ class Interface
 
   def update_title
     puts "Enter the title of the book you want to change:".cyan
-     old_title = gets.strip.to_s.capitalize
+     old_title = gets.strip.to_s.titleize
     puts "Enter the new title: ".cyan
-     new_title = gets.strip.to_s.capitalize
+     new_title = gets.strip.to_s.titleize
      ubook = Book.all.find_by(title: old_title)
       if ubook == nil
         puts "Your title was not updated. You do not have that book on your bookshelf!".red
@@ -93,7 +93,7 @@ class Interface
 
   def remove_book
     puts "Enter the title of the book you want to delete: ".cyan
-     book_title = gets.strip.to_s.capitalize
+     book_title = gets.strip.to_s.titleize
      destroy_book = Book.all.find_by(title: book_title)
       if destroy_book == nil
         puts "You do not have that book on your bookshelf!".red
@@ -108,7 +108,7 @@ class Interface
 
   def clear_bookshelf
     puts "Are you sure you want to empty your bookshelf???(Y/N)".red
-     answer = gets.strip.to_s.capitalize
+     answer = gets.strip.to_s.titleize
        if answer == "y" || answer== "Y"
          dbooks =Book.all.where(bookshelf_id: @shelf.id)
          dbooks.destroy_all
@@ -143,7 +143,7 @@ class Interface
 
   def find_author
     puts "Enter the title of the book you want to see the author of: ".cyan
-    abook = gets.strip.to_s
+    abook = gets.strip.to_s.titleize
     tbook = Book.all.find_by(title: abook)
     # tbook = Book.all.find{|book| book.title== abook}
       if tbook == nil
@@ -159,7 +159,7 @@ class Interface
 
   def find_by_genre
     puts "Enter the genre that you would like to see the books of: ".cyan
-     user_genre = gets.strip.to_s.capitalize
+     user_genre = gets.strip.to_s.titleize
      u_genre = Genre.all.find_by(name:user_genre)
       if u_genre ==nil 
         puts "Sorry, there is no such genre in your collection".red
