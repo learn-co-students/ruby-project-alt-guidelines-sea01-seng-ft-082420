@@ -26,28 +26,31 @@ def add_to_club
             type.choice 'white'
             type.choice 'red'
         end
-        Customer.create(name: "#{@@name}", wine_preference: "#{fave}")
-    ### if NO is selected do I return to menu?
+        Customer.create(name: "#{@@name}", wine_preference: "#{fave}")  
+        puts "That's all I need.  You are now a member of the club!"
     end
+    menu
 end
 
 def menu
     prompt = TTY::Prompt.new
     help = prompt.select("What can I help you with today?") do |menu|
-    menu.choice 'What was my last purchase?'
-    menu.choice 'What have all my wine purchases been?'
+    menu.choice 'What was the last bottle added to my cellar?'
+    menu.choice 'What\'s in my cellar?'
     menu.choice 'I\'d like to exchange a bottle, please'
-    menu.choice 'What do you have today?'
+    menu.choice 'Maybe some wine.'
     end
-    if help == 'What was my last purchase?'
-        puts "Let me check."  # make a better sentence with interpolation
-        wine = Customer.find_by(name: @@name).wine_deals.last.winery.wine_type #maybe change to name
-        purchase(wine)  #if nil puts message "Sorry, there's no record" move to wine_seeking
-    elsif help == 'What have all my wine purchases been?'
+    if help == 'What was the last bottle added to my cellar?'
+        puts "Let me check."  
+        cellar_check
+        # wine = Customer.find_by(name: @@name).wine_deals.last.winery.wine_type #maybe change to name
+        # # make a better sentence with interpolation
+        # purchase(wine)  #if nil puts message "Sorry, there's no record" move to wine_seeking
+    elsif help == 'What\'s in my cellar?'
         show_all_wine
     elsif help == 'I\'d like to exchange a bottle, please'
         exchange
-    elsif help == 'What do you have today?'
+    elsif help == 'Maybe some wine.'
         wine_seeking
     else
         puts "Thanks for coming in!"
@@ -56,7 +59,7 @@ end
 
 def wine_seeking
     prompt = TTY::Prompt.new
-    seek = prompt.select("What wine are you looking for today?") do |offer|
+    seek = prompt.select("What wine are you looking for?") do |offer|
     offer.choice 'bubbly'
     offer.choice 'rose'
     offer.choice 'white'
@@ -75,26 +78,27 @@ def purchase(wine)
         #answer.choice 'What else do you have?  What would you suggest' . sample
     end
     if sell == 'Yes, please!'
-        puts "Thank you for your purchase" # make that sale, create wine_deal #find wine id to create wine_deal
+        puts "Thank you for your purchase." 
         c = Customer.find_by(name: @@name).id
-        b = Winery.find_by(wine_type: wine).id
-        a = WineDeal.create(name: "11th", customer_id: c, winery_id: b)
-        drink
-    elsif sell == 'Maybe not today.'
-        puts "Maybe next time.  Thanks for coming in!"
+        b = Winery.find_by(name: wine).id
+        a = WineDeal.create(name: "#{b}.#{c}", customer_id: c, winery_id: b) 
+        drink 
+    elsif 
+        sell == 'Maybe not today.'
+        puts "Another time then."
+        menu  ### or maybe wine_seeking
     end
 end
 
-def drink
+def drink  ## or stash???
     prompt = TTY::Prompt.new
     friday = prompt.select("It's Friday! What are your plans?") do |hmm|
         hmm.choice 'Have a nice dinner!'
         hmm.choice 'Throw a party!'
     end
     if friday == 'Have a nice dinner!'
-        # destroy last row entered
         Customer.find_by(name: @@name).wine_deals.last.destroy
-        ### puts message "You drank a couple glasses of wine with an amazing dinner... blah blah blah"
+        puts "You drank a couple glasses of wine with an amazing dinner.  Life is good!"
     elsif friday == 'Throw a party!'
         Customer.find_by(name: @@name).wine_deals.destroy_all
         ### put message with count like "wow, you guys drank #{this_many} bottles"
@@ -125,15 +129,25 @@ def exchange
         that.choice 'red'
     end
     w.update(wine_type: new_wine)
-    
     #show_all_wine.update_all wine_type: this
     ## maybe change so it's not changing the Wineries actual wine type and just change wine id in Wine Deal to equal Wine id of new_wine
     # return to menu???
-
+end
+    
+    def cellar_check
+        first = Customer.find_by(name:@@name).wine_deals
+        if first == nil || first.empty?
+            puts "Sorry, there's nothing in your cellar right now."
+            menu  ### or ? wine_seeking
+        else
+            wine = Customer.find_by(name: @@name).wine_deals.last.winery.name
+            puts "Looks like you bought a bottle of #{wine} last time."
+            purchase(wine)  
+        end
+    end
     
 end
     
 
 
 
-end
