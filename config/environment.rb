@@ -2,4 +2,8 @@ require 'bundler'
 Bundler.require
 
 ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.db')
-require_all 'lib'
+require_all 'app'
+
+####### Turn off SQL logger when ready to format layout #######
+ActiveRecord::Base.logger = nil
+

@@ -1,3 +1,13 @@
 require_relative '../config/environment'
+require_relative '../lib/cli.rb'
+require 'optparse'
+# run from command line w/ ruby bin/run.rb
 
-puts "hello world"
+cli = CommandLineInterface.new
+cli.greet
+# cli.menu
+# cli.wine_seeking
+
+
+
+
