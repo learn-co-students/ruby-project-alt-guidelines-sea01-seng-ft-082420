@@ -37,7 +37,7 @@ Functionality of The Bookshelf includes:
 [Video demo](https://www.youtube.com/watch?v=eYNUSFGpr2o&t=72s)
 
 ### Legal
-Copyright (c) 2020 Margarita Morozova & Jackson Beytebiere
+This code is considered public domain.
 
 Margarita Morozova https://github.com/rita-morozova
 Jackson Beytebiere https://github.com/JacksonBey
